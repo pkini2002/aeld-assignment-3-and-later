@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/shv
 
 if [ $# -ne 2 ]
 then
