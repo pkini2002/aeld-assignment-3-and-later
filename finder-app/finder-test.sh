@@ -52,7 +52,7 @@ fi
 #make clean
 #make
 
-if [ ! -x ./writer ]
+if ! command -v writer >/dev/null 2>&1
 then
 	echo "Makefile error, Failed to generate writer executable in $(pwd)."
 	exit 1
@@ -60,10 +60,11 @@ fi
 
 for i in $( seq 1 $NUMFILES)
 do
-	./writer "$WRITEDIR/${username}$i.txt" "$WRITESTR"
+	writer "$WRITEDIR/${username}$i.txt" "$WRITESTR"
 done
 
-OUTPUTSTRING=$(./finder.sh "$WRITEDIR" "$WRITESTR")
+OUTPUTSTRING=$(finder.sh "$WRITEDIR" "$WRITESTR")
+echo "${OUTPUTSTRING}" > /tmp/assignment4-result.txt
 
 # remove temporary directories
 rm -rf /tmp/aeld-data
